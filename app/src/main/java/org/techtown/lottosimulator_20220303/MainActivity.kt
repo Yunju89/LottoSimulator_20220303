@@ -24,7 +24,15 @@ class MainActivity : AppCompatActivity() {
 
 //    사용한 금액, 당첨된 금액 합산 변수
     var mUsedMoney = 0
-    var mEarnMoney = 0L     // 30억 이상 담첨 대비. Long타입설정
+    var mEarnMoney = 0L     // 30억 이상 담첨 대비. Long 타입설정
+
+//    각 등수별 횟수 카운팅 변수
+    var rankCount1 = 0
+    var rankCount2 = 0
+    var rankCount3 = 0
+    var rankCount4 = 0
+    var rankCount5 = 0
+    var rankCountFail = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -129,21 +137,30 @@ class MainActivity : AppCompatActivity() {
             6 -> {
 //                30억을 번 금액으로 추가
                 mEarnMoney += 3000000000
+                rankCount1++
             }
             5 -> {
 //                보너스 번호를 맞췄는지? => 보너스 번호가 내 번호 목록에 들어있나?
                 if (mMyNumbers.contains(mBonusNum)) {
                     mEarnMoney += 50000000
+                    rankCount2++
+
                 } else {
                     mEarnMoney += 2000000
+                    rankCount3++
                 }
             }
             4 -> {
                 mEarnMoney += 50000
+                rankCount4++
             }
             3 -> {
 //                5등 -> 5천원 사용한 돈을 줄여주자.
                 mUsedMoney -= 5000
+                rankCount5++
+            }
+            else -> {
+                rankCountFail++
             }
 
         }
@@ -151,6 +168,14 @@ class MainActivity : AppCompatActivity() {
 
         txtUsedMoney.text = "${NumberFormat.getInstance().format(mUsedMoney)} 원"
         txtEarnMoney.text = "${NumberFormat.getInstance().format(mEarnMoney)} 원"
+
+//        등수별 당첨 횟수 텍스트뷰 반영
+        txtRankCount1.text ="${rankCount1} 회"
+        txtRankCount2.text ="${rankCount2} 회"
+        txtRankCount3.text ="${rankCount3} 회"
+        txtRankCount4.text ="${rankCount4} 회"
+        txtRankCount5.text ="${rankCount5} 회"
+        txtRankCountFail.text ="${rankCountFail} 회"
 
     }
 
