@@ -31,8 +31,27 @@ class MainActivity : AppCompatActivity() {
 //        6개의 당첨 번호 생성
 //        코틀린의 for 문은 for-each 문법 기반
 
-        for (i in 0..5 ){
-            Log.d("반복문확인", i.toString())
+        for (i in 0 until 6 ){
+
+//            괜찮은 번호가 나올 때 까지 무한 반복
+            while(true){
+
+//                1~45 랜덤숫자
+//                Math.random()은 0~1 => 1~45로 가공(Int 캐스팅)
+                val randomNum = (Math.random() * 45 + 1).toInt()
+
+//                중복 검사 통과시 while 깸
+
+                if(true){
+
+
+                    break
+                }
+
+
+
+           }
+
         }
 
 
