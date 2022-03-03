@@ -7,10 +7,15 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+//    내 번호 6개
+//    코틀린은 단순 배열 초기화 int[] arr = {  } 문법 지원 x
+
+//    숫자 목록을 파라미터로 넣으면 > Array 로 만들어주는 함수 실행
+   val mMyNumbers = arrayOf(13, 17, 23, 27, 36, 41)
 
 //    컴퓨터가 뽑은 당첨번호 6개를 저장할 ArrayList
     val mWinNumberList = ArrayList<Int>()
-    var mBonusNum = 0               // 보너스번호는 매 판마다 새로 뽑아야 함. 변경 O
+    var mBonusNum = 0                        // 보너스번호는 매 판마다 새로 뽑아야 함. 변경 O
 
 //    당첨번호를 보여줄 6개의 텍스트뷰를 담아 둘 ArrayList
     val mWinNumTextViewList = ArrayList<TextView>()
@@ -68,11 +73,11 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("당첨번호", mWinNumberList.toString())
 
-//        for > 돌면서, 당첨번호도 / 몇번째 바퀴인지도 필요 => 텍스트뷰를 찾아내야 함.
 
+//        for > 돌면서, 당첨번호도 / 몇번째 순서인지도 필요 => 텍스트뷰를 찾아내야 함.
         mWinNumberList.forEachIndexed { index, winNum ->
-//            순서에 맞는 텍스트뷰 추출 => 문구로 당첨번호 설정}
 
+//            순서에 맞는 텍스트뷰 추출 => 문구로 당첨번호 설정}
             mWinNumTextViewList[index].text = winNum.toString()
 
         }
@@ -90,11 +95,23 @@ class MainActivity : AppCompatActivity() {
 
 //        텍스트뷰에 배치
         txtBonusNum.text = mBonusNum.toString()
+
+//        내 숫자 6개와 비교, 등수 판정
+
+        checkLottoRank()
+
+    }
+
+    private  fun checkLottoRank(){
+
+        //  내 번호 목록 / 당첨 번호 목록 중 같은 숫자가 몇개?
+         var correctCount = 0
+
     }
 
     private fun setValues(){
 
-        mWinNumTextViewList.add(txtWinNum01)
+        mWinNumTextViewList.add(txtWinNum01)            // textViewList 목록에 textView 담아줌
         mWinNumTextViewList.add(txtWinNum02)
         mWinNumTextViewList.add(txtWinNum03)
         mWinNumTextViewList.add(txtWinNum04)
