@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         mWinNumberList.clear()
 
-        for (i in 0 until 6 ){
+        for (i in 0 until 6 ){           // for (i in 0..5)
 
 //            괜찮은 번호가 나올 때 까지 무한 반복
             while(true){
@@ -57,7 +57,10 @@ class MainActivity : AppCompatActivity() {
            }
         }
 
-//        만들어 진 당첨번호 6개를 -> 텍스트뷰에 표현
+//        만들어 진 당첨번호 6개를 -> 작은수~큰수로 정리해서 -> 텍스트뷰에 표현
+
+        mWinNumberList.sort()                     // 자바로 직접 짜던 로직 > 객체지향 특성, 만들어져 있는 기능 활용
+
         Log.d("당첨번호", mWinNumberList.toString())
 
         for(winNum in mWinNumberList){
