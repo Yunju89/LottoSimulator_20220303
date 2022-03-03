@@ -1,5 +1,6 @@
 package org.techtown.lottosimulator_20220303
 
+import android.icu.text.NumberFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -110,31 +111,30 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private  fun checkLottoRank(){
+    private  fun checkLottoRank() {
 
 //        내 번호 목록 / 당첨 번호 목록 중 같은 숫자가 몇개?
-         var correctCount = 0
+        var correctCount = 0
 
 //        내 번호를 하나씩 조회
-        for(myNum in mMyNumbers){
+        for (myNum in mMyNumbers) {
 //            당첨번호를 맞췄는가? => 당첨 목록에 내 번호가 들어있나?
-            if(mWinNumberList.contains(myNum)){
+            if (mWinNumberList.contains(myNum)) {
                 correctCount++
             }
         }
 //        맞춘 갯수에 따른 등수 판정
 
-        when (correctCount){
+        when (correctCount) {
             6 -> {
 //                30억을 번 금액으로 추가
                 mEarnMoney += 3000000000
             }
             5 -> {
 //                보너스 번호를 맞췄는지? => 보너스 번호가 내 번호 목록에 들어있나?
-                if(mMyNumbers.contains(mBonusNum)){
+                if (mMyNumbers.contains(mBonusNum)) {
                     mEarnMoney += 50000000
-                }
-                else {
+                } else {
                     mEarnMoney += 2000000
                 }
             }
@@ -147,6 +147,10 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+//        사용금액 / 당첨금액 텍스트뷰에 각각 반영
+
+        txtUsedMoney.text = "${NumberFormat.getInstance().format(mUsedMoney)} 원"
+        txtEarnMoney.text = "${NumberFormat.getInstance().format(mEarnMoney)} 원"
 
     }
 
